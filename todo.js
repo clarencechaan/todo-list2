@@ -1,4 +1,7 @@
 class Todo {
+
+    done = false;
+
     constructor(title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
@@ -20,6 +23,18 @@ class Todo {
 
     getPriority() {
         return this.priority;
+    }
+
+    setDueDate(dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    getDoneStatus() {
+        return this.done;
+    }
+
+    toggleDoneStatus() {
+        this.done = !this.done;
     }
 };
 

@@ -13,36 +13,52 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="content">
-        <div id="projects-window">
-            <div id="projects"></div>
-            <button id="add-project">+ Add Project</button>
-            <form action="#" id="project-form" class="hidden">
-                <input type="text" id="project-name" name="project-name" required>
-                <div>
-                    <button id="project-add">Add</button>
-                    <button id="project-cancel" type="button">Cancel</button>
-                </div>
-            </form>
+    <div id="window">
+        <div id="header">
+            <img src="task-icon.png" alt="Icon">
+            TO-DO
         </div>
-        <div id="todo-window">
-            <div id="todos"></div>
-            <button id="add-task">+ Add Task</button>
-            <form action="#" id="task-form" class="hidden">
-                <input type="text" placeholder="Title: Pay bills" id="task-title" name="task-title" required>
-                <input type="text" placeholder="Description: rent, internet, phone" id="task-description" name="task-description">
-                <input type="date" id="task-date" name="task-date" required>
-                <select id="task-priority" name="task-priority" required>
-                    <option value="High">High</option>
-                    <option value="Medium" selected="selected">Medium</option>
-                    <option value="Low">Low</option>
-                </select>
-                <button id="form-add">Add</button>
-                <button id="form-cancel" type="button">Cancel</button>
-            </form>
+        <div id="content">
+            <div id="projects-window">
+                <div id="projects-header">Projects</div>
+                <div id="projects"></div>
+                <button id="add-project">+ Add Project</button>
+                <form action="#" id="project-form" class="hidden">
+                    <input type="text" id="project-name" name="project-name" required>
+                    <div>
+                        <button id="project-add">Add</button>
+                        <button id="project-cancel" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div id="todo-window">
+                <div id="todos-header">Inbox</div>
+                <div id="todos"></div>
+                <button id="add-task">+ Add Task</button>
+                <form action="#" id="task-form" class="hidden">
+                    <div id="task-form-left">
+                        <input type="text" placeholder="Title: pay bills" id="task-title" name="task-title" required>
+                        <textarea placeholder="Description: rent, internet, phone" id="task-description" name="task-description"></textarea>
+                    </div>
+                    <div id="task-form-middle">
+                        <label for="task-date">Date</label>
+                        <input type="date" id="task-date" name="task-date" required>
+                        <label for="task-priority">Priority</label>
+                        <select id="task-priority" name="task-priority" required>
+                            <option value="High">High</option>
+                            <option value="Medium" selected="selected">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div id="task-form-right">
+                        <button id="form-add">Add</button>
+                        <button id="form-cancel" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

@@ -4,33 +4,53 @@ const displayController = (() => {
     const projectsDOM = document.querySelector('#projects');
 
     const addTodo = (todo) => {
+        const todoExpanded = document.createElement('div')
         const todoElement = document.createElement('div');
+        const todoCheckbox = document.createElement('input')
         const todoTitle = document.createElement('div');
-        const todoDescription = document.createElement('div');
+        const detailsBtn = document.createElement('button')
         const todoDate = document.createElement('input');
+        const removeTodoBtn = document.createElement('button');
+        const todoDetails = document.createElement('div');
+        const todoDescription = document.createElement('div');
         const todoPriority = document.createElement('div');
-        const removeTodoBtn = document.createElement('button')
 
+        todoExpanded.classList.add('todo-expanded');
         todoElement.classList.add('todo');
-        todoTitle.classList.add('todo-title')
-        todoDescription.classList.add('todo-description')
-        todoDate.classList.add('todo-date')
+        todoCheckbox.classList.add('todo-checkbox');
+        todoCheckbox.setAttribute('type', 'checkbox');
+        todoTitle.classList.add('todo-title');
+        detailsBtn.classList.add('todo-details-btn');
+        detailsBtn.innerText = 'Details';
+        todoDate.classList.add('todo-date');
         todoDate.setAttribute('type', 'date');
-        todoPriority.classList.add('todo-priority');
         removeTodoBtn.classList.add('remove-todo');
+        todoDetails.classList.add('todo-details');
+        todoDetails.classList.add('hidden');
+        todoDescription.classList.add('todo-description');
+        todoPriority.classList.add('todo-priority');
 
+        if (todo.getDoneStatus()) {
+            todoTitle.classList.add('strikethrough');
+        }
+
+        todoCheckbox.checked = todo.getDoneStatus();
         todoTitle.innerText = todo.getTitle();
-        todoDescription.innerText = todo.getDescription();
         todoDate.value = todo.getDueDate();
-        todoPriority.innerText = todo.getPriority();
         removeTodoBtn.innerText = '✘';
+        todoDescription.innerText = todo.getDescription();
+        todoPriority.innerText = 'Priority: ' + todo.getPriority();
 
+        todoElement.appendChild(todoCheckbox);
         todoElement.appendChild(todoTitle);
-        todoElement.appendChild(todoDescription);
+        todoElement.appendChild(detailsBtn);
         todoElement.appendChild(todoDate);
-        todoElement.appendChild(todoPriority);
         todoElement.appendChild(removeTodoBtn);
-        todosDOM.appendChild(todoElement);
+        todoDetails.appendChild(todoDescription);
+        todoDetails.appendChild(todoPriority);
+        todoExpanded.appendChild(todoElement);
+        todoExpanded.appendChild(todoDetails);
+        todosDOM.appendChild(todoExpanded);
     }
 
     const addProject = (project) => {
@@ -97,6 +117,8 @@ const displayController = (() => {
         if (taskForm.classList.contains('hidden')) {
             taskForm.classList.remove('hidden');
             addTaskBtn.classList.add('hidden');
+            // focus on project task title field
+            document.getElementById("task-title").focus();
         } else {
             taskForm.classList.add('hidden');
             addTaskBtn.classList.remove('hidden');
@@ -124,6 +146,7 @@ const displayController = (() => {
 
     const displayTodos = (project) => {
         clearTodos();
+        addTodosHeader(project);
         populateTodos(project);
     }
 
@@ -135,6 +158,29 @@ const displayController = (() => {
     const clearProjectForm = () => {
         const projectForm = document.querySelector('#project-form');
         projectForm.reset();
+    }
+    
+    const toggleDetails = (index) => {
+        const todoDetails = document.querySelectorAll('.todo-details');
+        if (todoDetails[index].classList.contains('hidden')) {
+            todoDetails[index].classList.remove('hidden');
+        } else {
+            todoDetails[index].classList.add('hidden');
+        }
+    }
+
+    const addTodosHeader = (project) => {
+        const todosHeader = document.querySelector('#todos-header');
+        todosHeader.innerText = project.getName();
+    }
+
+    const toggleStrikethroughTodo = (index) => {
+        const todoTitles = document.querySelectorAll('.todo-title');
+        if (todoTitles[index].classList.contains('strikethrough')) {
+            todoTitles[index].classList.remove('strikethrough');
+        } else {
+            todoTitles[index].classList.add('strikethrough');
+        }
     }
 
     return {
@@ -149,7 +195,9 @@ const displayController = (() => {
         displayProjects,
         displayTodos,
         clearTaskForm,
-        clearProjectForm
+        clearProjectForm,
+        toggleDetails,
+        toggleStrikethroughTodo
     };
 })();
 

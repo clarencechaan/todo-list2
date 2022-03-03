@@ -6,6 +6,7 @@ import displayController from './display-controller.js';
 const todoApp = (() => {
 
     const addProject = () => {
+        // add project to projects manager
         const projectName = displayController.getProjectName();
         const project = new Project(projectName);
         projectsManager.addProject(project);
@@ -94,10 +95,42 @@ const todoApp = (() => {
         addAllEventListeners();
     }
 
-    const addAllEventListeners = ()  => {
+    const addEventListenersToDatePickers = () => {
+        const datePickers = document.querySelectorAll('.todo-date');
+        for (let i = 0; i < datePickers.length; i++) {
+            datePickers[i].onchange = () => {
+                projectsManager.getCurrentProject().todos[i].setDueDate(datePickers[i].value);
+            }
+        }
+    }
+
+    const addEventListenersToDetailsBtn = () => {
+        const detailsBtns = document.querySelectorAll('.todo-details-btn');
+        for (let i = 0; i < detailsBtns.length; i++) {
+            detailsBtns[i].onclick = () => {
+                displayController.toggleDetails(i);
+            }
+        }
+    }
+
+    const addEventListenersToCheckboxes = () => {
+        const checkboxes = document.querySelectorAll('.todo-checkbox');
+        for (let i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].onclick = () => {
+                projectsManager.getCurrentProject().todos[i].toggleDoneStatus();
+                displayController.toggleStrikethroughTodo(i);
+                console.log("checkbox clicked");
+            }
+        }
+    }
+
+    const addAllEventListeners = () => {
         addEventListenersToProjectItems();
         addEventListenersToRemoveProjectBtns();
         addEventListenersToRemoveTodoBtns();
+        addEventListenersToDatePickers();
+        addEventListenersToDetailsBtn();
+        addEventListenersToCheckboxes();
     }
 
     return {
@@ -107,12 +140,17 @@ const todoApp = (() => {
     }
 })();
 
-// default project and todo
-const todo = new Todo("brush teeth", "description", "2022-03-12", "High");
-const defaultProject = new Project("Inbox");
-defaultProject.addTodo(todo);
-defaultProject.addTodo(todo);
-projectsManager.addProject(defaultProject);
+// default projects and todos
+const todo = new Todo("pay bills", "phone, rent, internet", "2022-03-12", "High");
+const todo2 = new Todo("get groceries", "eggs, milk, cheese", "2022-03-15", "Low");
+const todo3 = new Todo("work out", "back, arms, chest", "2022-03-12", "Medium");
+const inbox = new Project("Inbox");
+const gymProject = new Project("Gym");
+inbox.addTodo(todo);
+inbox.addTodo(todo2);
+gymProject.addTodo(todo3);
+projectsManager.addProject(inbox);
+projectsManager.addProject(gymProject);
 
 // add event listener to "Add Project" button
 const addProjectBtn = document.querySelector('#add-project')
@@ -135,6 +173,7 @@ taskForm.onsubmit = todoApp.addTask;
 formCancelBtn.addEventListener('click', displayController.toggleShowTaskForm);
 
 displayController.addProject(projectsManager.projects[0]);
+displayController.addProject(projectsManager.projects[1]);
 displayController.displayTodos(projectsManager.projects[0]);
 
 todoApp.addAllEventListeners();
