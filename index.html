@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script type="module" src="todo.js"></script>
+    <script type="module" src="project.js"></script>
+    <script type="module" src="projects-manager.js"></script>
+    <script type="module" src="display-controller.js"></script>
+    <script type="module" src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="content">
+        <div id="projects-window">
+            <div id="projects"></div>
+            <button id="add-project">+ Add Project</button>
+            <form action="#" id="project-form" class="hidden">
+                <input type="text" id="project-name" name="project-name" required>
+                <div>
+                    <button id="project-add">Add</button>
+                    <button id="project-cancel" type="button">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div id="todo-window">
+            <div id="todos"></div>
+            <button id="add-task">+ Add Task</button>
+            <form action="#" id="task-form" class="hidden">
+                <input type="text" placeholder="Title: Pay bills" id="task-title" name="task-title" required>
+                <input type="text" placeholder="Description: rent, internet, phone" id="task-description" name="task-description">
+                <input type="date" id="task-date" name="task-date" required>
+                <select id="task-priority" name="task-priority" required>
+                    <option value="High">High</option>
+                    <option value="Medium" selected="selected">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <button id="form-add">Add</button>
+                <button id="form-cancel" type="button">Cancel</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
