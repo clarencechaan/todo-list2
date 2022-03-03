@@ -19,11 +19,13 @@ const displayController = (() => {
         todoElement.classList.add('todo');
         todoCheckbox.classList.add('todo-checkbox');
         todoCheckbox.setAttribute('type', 'checkbox');
+        todoCheckbox.setAttribute('autocomplete', 'off');
         todoTitle.classList.add('todo-title');
         detailsBtn.classList.add('todo-details-btn');
         detailsBtn.innerText = 'Details';
         todoDate.classList.add('todo-date');
         todoDate.setAttribute('type', 'date');
+        todoDate.setAttribute('autocomplete', 'off');
         removeTodoBtn.classList.add('remove-todo');
         todoDetails.classList.add('todo-details');
         todoDetails.classList.add('hidden');

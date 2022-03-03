@@ -181,10 +181,8 @@ formCancelBtn.addEventListener('click', displayController.toggleShowTaskForm);
 const projectsManagerJSON = localStorage.getItem('projectsManager');
 const projectsManagerObject = JSON.parse(projectsManagerJSON);
 
-console.log(projectsManagerObject);
-
 if (projectsManagerObject === null) {
-// default projects and todos
+    // default projects and todos
     const todo = new Todo("pay bills", "phone, rent, internet", "2022-03-12", "High");
     const todo2 = new Todo("get groceries", "eggs, milk, cheese", "2022-03-15", "Low");
     const todo3 = new Todo("work out", "back, arms, chest", "2022-03-12", "Medium");
@@ -199,13 +197,8 @@ if (projectsManagerObject === null) {
     projectsManager.reconstructProjectsManager(projectsManagerObject);
 }
 
-console.log(projectsManager);
-
-
 // display projects and todos
 displayController.displayProjects(projectsManager.projects);
 displayController.displayTodos(projectsManager.projects[0]);
 
 todoApp.addAllEventListeners();
-
-console.log(projectsManager);
