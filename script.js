@@ -23,6 +23,9 @@ const todoApp = (() => {
         // hide project form
         displayController.toggleShowProjectForm();
 
+        // save projects manager to local storage
+        localStorage.setItem('projectsManager', JSON.stringify(projectsManager));
+
         // prevent page from reloading
         return false;
     }
@@ -44,6 +47,9 @@ const todoApp = (() => {
 
         // hide task form
         displayController.toggleShowTaskForm();
+
+        // save projects manager to local storage
+        localStorage.setItem('projectsManager', JSON.stringify(projectsManager));
 
         // prevent page from reloading
         return false;
@@ -83,6 +89,9 @@ const todoApp = (() => {
         displayController.displayProjects(projectsManager.projects);
         displayController.displayTodos(projectsManager.getCurrentProject());
 
+        // save projects manager to local storage
+        localStorage.setItem('projectsManager', JSON.stringify(projectsManager));
+
         // add event listener to projects
         addAllEventListeners();
     }
@@ -91,6 +100,9 @@ const todoApp = (() => {
         projectsManager.getCurrentProject().removeTodoAtIndex(index);
         displayController.displayTodos(projectsManager.getCurrentProject());
 
+        // save projects manager to local storage
+        localStorage.setItem('projectsManager', JSON.stringify(projectsManager));
+        
         // add event listener to remove todo buttons
         addAllEventListeners();
     }
@@ -100,6 +112,9 @@ const todoApp = (() => {
         for (let i = 0; i < datePickers.length; i++) {
             datePickers[i].onchange = () => {
                 projectsManager.getCurrentProject().todos[i].setDueDate(datePickers[i].value);
+
+                // save projects manager to local storage
+                localStorage.setItem('projectsManager', JSON.stringify(projectsManager));
             }
         }
     }
@@ -119,7 +134,9 @@ const todoApp = (() => {
             checkboxes[i].onclick = () => {
                 projectsManager.getCurrentProject().todos[i].toggleDoneStatus();
                 displayController.toggleStrikethroughTodo(i);
-                console.log("checkbox clicked");
+
+                // save projects manager to local storage
+                localStorage.setItem('projectsManager', JSON.stringify(projectsManager));
             }
         }
     }
@@ -139,18 +156,6 @@ const todoApp = (() => {
         addAllEventListeners
     }
 })();
-
-// default projects and todos
-const todo = new Todo("pay bills", "phone, rent, internet", "2022-03-12", "High");
-const todo2 = new Todo("get groceries", "eggs, milk, cheese", "2022-03-15", "Low");
-const todo3 = new Todo("work out", "back, arms, chest", "2022-03-12", "Medium");
-const inbox = new Project("Inbox");
-const gymProject = new Project("Gym");
-inbox.addTodo(todo);
-inbox.addTodo(todo2);
-gymProject.addTodo(todo3);
-projectsManager.addProject(inbox);
-projectsManager.addProject(gymProject);
 
 // add event listener to "Add Project" button
 const addProjectBtn = document.querySelector('#add-project')
@@ -172,8 +177,35 @@ const formCancelBtn = document.querySelector('#form-cancel');
 taskForm.onsubmit = todoApp.addTask;
 formCancelBtn.addEventListener('click', displayController.toggleShowTaskForm);
 
-displayController.addProject(projectsManager.projects[0]);
-displayController.addProject(projectsManager.projects[1]);
+// get projects manager from storage
+const projectsManagerJSON = localStorage.getItem('projectsManager');
+const projectsManagerObject = JSON.parse(projectsManagerJSON);
+
+console.log(projectsManagerObject);
+
+if (projectsManagerObject === null) {
+// default projects and todos
+    const todo = new Todo("pay bills", "phone, rent, internet", "2022-03-12", "High");
+    const todo2 = new Todo("get groceries", "eggs, milk, cheese", "2022-03-15", "Low");
+    const todo3 = new Todo("work out", "back, arms, chest", "2022-03-12", "Medium");
+    const inbox = new Project("Inbox");
+    const gymProject = new Project("Gym");
+    inbox.addTodo(todo);
+    inbox.addTodo(todo2);
+    gymProject.addTodo(todo3);
+    projectsManager.addProject(inbox);
+    projectsManager.addProject(gymProject);
+} else {
+    projectsManager.reconstructProjectsManager(projectsManagerObject);
+}
+
+console.log(projectsManager);
+
+
+// display projects and todos
+displayController.displayProjects(projectsManager.projects);
 displayController.displayTodos(projectsManager.projects[0]);
 
 todoApp.addAllEventListeners();
+
+console.log(projectsManager);

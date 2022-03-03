@@ -36,6 +36,14 @@ class Todo {
     toggleDoneStatus() {
         this.done = !this.done;
     }
+
+    reconstructTodo(todoObject) {
+        this.title = todoObject.title;
+        this.description = todoObject.description;
+        this.dueDate = todoObject.dueDate;
+        this.priority = todoObject.priority;
+        this.done = todoObject.done;
+    }
 };
 
 export default Todo;

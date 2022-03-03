@@ -1,3 +1,5 @@
+import Project from "./project.js";
+
 const projectsManager = (() => {
 
     let projects = [];
@@ -26,13 +28,22 @@ const projectsManager = (() => {
         currentProjectIndex = index;
     }
 
+    const reconstructProjectsManager = (projectsManagerObject) => {
+        for (let projectObject of projectsManagerObject.projects) {
+            const project = new Project();
+            project.reconstructProject(projectObject);
+            addProject(project);
+        }
+    }
+
     return {
         projects,
         addProject,
         getCurrentProject,
         addTodoToCurrentProject,
         removeProjectAtIndex,
-        switchToProjectAtIndex
+        switchToProjectAtIndex,
+        reconstructProjectsManager
     }
 })();
 

@@ -1,3 +1,5 @@
+import Todo from "./todo.js";
+
 class Project {
 
     todos = [];
@@ -16,6 +18,16 @@ class Project {
 
     getName() {
         return this.name;
+    }
+
+    reconstructProject(projectObject) {
+        this.name = projectObject.name;
+
+        for (let todoObject of projectObject.todos) {
+            const todo = new Todo();
+            todo.reconstructTodo(todoObject);
+            this.addTodo(todo);
+        }
     }
 }
 
