@@ -172,7 +172,6 @@ body {
 .todo-checkbox {
     width: 18px;
     height: 18px;
-    vertical-align: middle;
 }
 
 .todo-title {
@@ -345,4 +344,5 @@ body {
 
 .strikethrough {
     text-decoration: line-through;
+    color: gray;
 }
