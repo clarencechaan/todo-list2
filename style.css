@@ -335,6 +335,7 @@ body {
     font-size: 24px;
     padding-left: 50px;
     padding-top: 24px;
+    box-sizing: border-box;
 }
 
 #todos-header {
