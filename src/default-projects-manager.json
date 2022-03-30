@@ -1,0 +1,35 @@
+{
+  "projects": [
+    {
+      "todos": [
+        {
+          "done": false,
+          "title": "pay bills",
+          "description": "phone, rent, internet",
+          "dueDate": "2022-03-12",
+          "priority": "High"
+        },
+        {
+          "done": false,
+          "title": "get groceries",
+          "description": "eggs, milk, cheese",
+          "dueDate": "2022-03-15",
+          "priority": "Low"
+        }
+      ],
+      "name": "Inbox"
+    },
+    {
+      "todos": [
+        {
+          "done": false,
+          "title": "work out",
+          "description": "back, arms, chest",
+          "dueDate": "2022-03-12",
+          "priority": "Medium"
+        }
+      ],
+      "name": "Gym"
+    }
+  ]
+}

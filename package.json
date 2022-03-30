@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "firebase": "^9.6.10"
+  },
+  "name": "todo-list2",
+  "description": "https://clarencechaan.github.io/todo-list2/",
+  "version": "1.0.0",
+  "main": "script.js",
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clarencechaan/todo-list2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clarencechaan/todo-list2/issues"
+  },
+  "homepage": "https://github.com/clarencechaan/todo-list2#readme"
+}

@@ -28,11 +28,16 @@ const projectsManager = (() => {
   };
 
   const reconstructProjectsManager = (projectsManagerObject) => {
+    projects.length = 0;
     for (let projectObject of projectsManagerObject.projects) {
       const project = new Project();
       project.reconstructProject(projectObject);
       addProject(project);
     }
+  };
+
+  const toPlainObject = () => {
+    return JSON.parse(JSON.stringify({ projects }));
   };
 
   return {
@@ -43,6 +48,7 @@ const projectsManager = (() => {
     removeProjectAtIndex,
     switchToProjectAtIndex,
     reconstructProjectsManager,
+    toPlainObject,
   };
 })();
 

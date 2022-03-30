@@ -5,12 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-    <script type="module" src="todo.js"></script>
-    <script type="module" src="project.js"></script>
-    <script type="module" src="projects-manager.js"></script>
-    <script type="module" src="display-controller.js"></script>
-    <script type="module" src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js"></script>
+    <link rel="stylesheet" href="styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,8 +17,31 @@
   <body>
     <div id="window">
       <div id="header">
-        <img src="task-icon.png" alt="Icon" />
+        <img src="images/task-icon.png" alt="Icon" />
         TO-DO
+        <div id="sign-in-out-container">
+          <div id="sign-in-container">
+            <button id="sign-in" type="button">
+              <img
+                src="images/profile_placeholder.png"
+                alt="profile picture"
+                id="placeholder-pic"
+              />
+              SIGN-IN WITH GOOGLE
+            </button>
+          </div>
+          <div id="user-container">
+            <img
+              src="images/profile_placeholder.png"
+              alt="profile picture"
+              id="user-pic"
+              referrerpolicy="no-referrer"
+              hidden
+            />
+            <div id="user-name" hidden>Clarence Chan</div>
+            <button id="sign-out" hidden>SIGN OUT</button>
+          </div>
+        </div>
       </div>
       <div id="content">
         <div id="projects-window">
