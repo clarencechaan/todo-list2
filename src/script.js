@@ -46,9 +46,6 @@ const todoApp = (() => {
     // hide project form
     displayController.toggleShowProjectForm();
 
-    // save projects manager to local storage
-    // localStorage.setItem("projectsManager", JSON.stringify(projectsManager));
-
     // save projectsManager to database if signed in, localStorage if signed out
     saveProjectsManager();
 
